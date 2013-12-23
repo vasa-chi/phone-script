@@ -5,21 +5,24 @@
  */
 
 var argv = require('optimist')
-  .usage('usage: $0 --uniqueid [string] --callerid [string] --local [string] --message [string] --socket [URL]')
+  .usage('usage: $0 --uniqueid [string] --callerid [string] --local [string] --file [string] --message [string] --socket [URL]')
   .alias('u', 'uniqueid')
   .alias('c', 'callerid')
   .alias('l', 'local')
+  .alias('f', 'file')
   .alias('m', 'message')
   .alias('s', 'socket')
   .string('u')
   .string('c')
   .string('l')
+  .string('f')
   .string('m')
   .string('s')
-  .demand(['u', 'c', 'l', 'm'])
+  .demand(['u', 'c', 'l', 'f'])
   .describe('u', 'Unique ID')
   .describe('c', 'Caller ID')
   .describe('l', 'local')
+  .describe('f', 'path to call recording')
   .describe('m', 'message')
   .describe('s', 'URL to websocket')
   .default('s', 'http://127.0.0.1:9999/socket')
@@ -44,6 +47,7 @@ client
       uniqueid: argv.uniqueid,
       callerid: argv.callerid,
       local   : argv.local,
+      file    : argv.file,
       message : argv.message
     }));
 
